@@ -1,6 +1,6 @@
 # Status
 
-**Repo:** https://github.com/TheBee-3328/fx2-cmix-t-rework (public)
+**Repo:** https://github.com/TheBee-3328/fx2-cmix-t-rework (public, `origin/master`)
 
 **Phase:** bootstrap — benchmark harness created; baseline not yet measured
 (build was blocked earlier by Nix/gcc; `bench/build.sh` is fixed for clang+COREI7).
