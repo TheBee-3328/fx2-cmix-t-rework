@@ -1,0 +1,55 @@
+Copyright notices for fx2-cmix-t-rework
+======================================
+
+This repository is a fork of fx2-cmix-transformer (itself derived from
+fx2-cmix / cmix). The program as a whole is distributed under the GNU
+General Public License version 3; see the file LICENSE for the full text
+of that license.
+
+Do not edit LICENSE itself — it is the FSF's GPLv3 license document.
+Copyright and provenance for this project are recorded here and in
+README.md.
+
+Copyright holders
+-----------------
+
+  Copyright (C) Byron Knoll
+    Original cmix compressor and related components.
+
+  Copyright (C) 2024 Kaido Orav
+    fx2-cmix / fxcmv1 and related Hutter Prize work (see also the
+    GPLv2-or-later notice in src/models/fxcmv1.cpp).
+
+  Copyright (C) Kaido Orav, Byron Knoll
+    Combined fx2-cmix Hutter Prize record (and related work with
+    Ibrahim Marcouch where applicable).
+
+  Copyright (C) the authors of fx2-cmix-transformer
+    Replacement of the online LSTM with a pretrained quantized
+    transformer, C++ inference kernels, training recipes, and the
+    accompanying writeup. Their copyright claims in the upstream
+    sources and writeup.md are preserved.
+
+  Copyright (C) 2026 Michael Chobot (TheBee-3328)
+    All subsequent modifications in this fork (fx2-cmix-t-rework),
+    including benchmarking harnesses and compression-score improvements
+    developed on top of the upstream tree.
+
+Third-party components (separate licenses)
+------------------------------------------
+
+  src/ds/emhash_map.hpp, src/ds/emhash_set.hpp
+    Copyright (c) 2019-2023 Huang Yuanbing
+    MIT License
+
+  src/ds/SmallVector.h, src/ds/SmallVector.hpp, src/ds/AlignOf.h
+    Part of the LLVM Project
+    Apache License v2.0 with LLVM Exceptions
+
+Compatibility note
+------------------
+
+Some source files (notably fxcmv1) carry a "GPLv2 or later" notice.
+Distributing this combined work under GPLv3 is permitted by that
+"or later" grant. Third-party MIT and Apache-2.0-with-LLVM-exception
+components remain under their original terms.

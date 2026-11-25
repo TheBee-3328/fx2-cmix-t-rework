@@ -1,0 +1,41 @@
+# Build / local artifacts
+scripts/
+cmix
+remap
+pgo_data/
+progress.log
+run/
+changes.v2
+logs
+/data/
+cpp_infer/data/
+.venv/
+__pycache__/
+*.pyc
+.env
+wandb/
+*.o
+archive9
+enwik9_uncompressed
+*.comp
+*.cmix.temp
+
+# Dataset (never commit; obtain from http://mattmahoney.net/dc/textdata.html)
+enwik9
+**/enwik9
+
+# Bench runtime outputs (keep slices/, slices.json, and *.csv logs)
+bench/work/
+bench/holdout_work/
+
+# macOS AppleDouble junk
+._*
+.DS_Store
+
+# Prebuilt cpp_infer microbench binaries
+cpp_infer/bench/alu_peaks
+cpp_infer/bench/gemv
+cpp_infer/bench/gemv_clang
+cpp_infer/bench/l3_thrasher
+cpp_infer/bench/membw
+cpp_infer/bench/misc
