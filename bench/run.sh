@@ -75,11 +75,20 @@ DECOMP_SIZE="$(stat -c%s "$CMIX")"
 # Peak RSS via GNU time if available, else /proc sampling helper.
 run_measured() {
   local out_time="$1" out_rss="$2"; shift 2
-  if command -v /usr/bin/time >/dev/null 2>&1 && /usr/bin/time -v true >/dev/null 2>&1; then
+  # Prefer GNU time (Nix: $(command -v time) may be the binary; bash builtin
+  # has no -v). Fall back to wall-clock only.
+  local TIME_BIN=""
+  if [[ -x /usr/bin/time ]] && /usr/bin/time -v true >/dev/null 2>&1; then
+    TIME_BIN=/usr/bin/time
+  elif command -v time >/dev/null 2>&1 && \
+       env time -v true >/dev/null 2>&1; then
+    TIME_BIN="env time"
+  fi
+  if [[ -n "$TIME_BIN" ]]; then
     local tmp
     tmp="$(mktemp)"
-    # shellcheck disable=SC2034
-    /usr/bin/time -v "$@" >"$WORK/last_stdout.txt" 2>"$tmp" || {
+    # shellcheck disable=SC2086
+    $TIME_BIN -v "$@" >"$WORK/last_stdout.txt" 2>"$tmp" || {
       cat "$tmp" >&2
       return 1
     }
@@ -164,7 +173,9 @@ for src in "${SLICES[@]}"; do
     all_ok=0
   fi
   sizes+=("$csize")
-  printf "%s comp=%s bytes  c=%.3fs d=%.3fs rss_peak_so_far=%sKB  %s\n" \
+  # LC_ALL=C: bash printf rejects "187.403" under comma-decimal locales and
+  # with `set -e` that aborts the whole bench after the first slice.
+  LC_ALL=C printf "%s comp=%s bytes  c=%.3fs d=%.3fs rss_peak_so_far=%sKB  %s\n" \
     "$base" "$csize" "$cs" "$ds" "$peak_rss" "$rt" | tee -a "$DETAIL"
   # free space between slices
   rm -f "$out"

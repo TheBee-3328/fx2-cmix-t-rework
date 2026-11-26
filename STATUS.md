@@ -1,10 +1,11 @@
-# Status
+# Status — STOPPED / ready to move
 
-**Repo:** https://github.com/TheBee-3328/fx2-cmix-t-rework (public, `origin/master`)
+**Best:** EXP05 accepted — screening **1626996** · holdout **524882** (SSE opposite −48/−40 on master `d4d43f8`)
 
-**Phase:** bootstrap — benchmark harness created; baseline not yet measured
-(build was blocked earlier by Nix/gcc; `bench/build.sh` is fixed for clang+COREI7).
+**Last finished:** EXP09 rejected (mx9 LR fine-tune; screening +89, holdout +25)
 
-**Current best:** unmodified upstream (no accepted score changes yet).
+**Note:** EXP10 briefly started then aborted for migration (no result).
 
-**Running now:** none.
+**Orchestrators:** stopped. See **HANDOFF.md**.
+
+**Next on new host:** EXP10 drop AddDoubleIndirect (fresh start)

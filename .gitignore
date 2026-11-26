@@ -39,3 +39,31 @@ cpp_infer/bench/gemv_clang
 cpp_infer/bench/l3_thrasher
 cpp_infer/bench/membw
 cpp_infer/bench/misc
+bench/.discord_webhook
+bench/monitor.log
+bench/.monitor_tick
+bench/.monitor_final_sent
+bench/.holdout_launched
+bench/baseline_run.log
+bench/holdout_run.log
+
+# Cursor / local IDE
+.cursor/
+
+# Bench orchestration runtime (do not commit)
+bench/*.log
+bench/*.stdout
+bench/*.bak
+bench/.agent_*
+bench/.campaign.lock
+bench/.campaign_freeze
+bench/.campaign_state
+bench/.campaign_state.*
+bench/.discord_seen_events
+bench/.driver_*
+bench/.drivers_disabled
+bench/.heartbeat_due
+bench/.holdout_lock_*
+bench/.owner_done_*
+bench/.parent_end_at
+bench/.exp10_nudge_ts

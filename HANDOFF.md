@@ -1,33 +1,18 @@
 # Handoff
 
-## Layout
+## Current best (do not re-run baseline; BEST updated)
+- **EXP05 accepted:** slices=**1626996**, holdout=**524882**
+- Original baseline was 1627084 / 524904 (still in CSV as `baseline`)
+- RSS caps still vs original baseline 5815060 / 5812904 (≤110%)
 
-Work in `fx2-cmix-transformer/` (git root). Parent dir may hold `enwik9`
-(symlink `./enwik9` → `../enwik9`); **enwik9 is gitignored**.
+## EXP05 change
+- `src/mixer/sse.cpp`: M_x1W0 (7648+1)→(7648−48); M_x2W0 (2560+1)→(2560−40)
 
-## Build (NixOS)
+## EXP09 reject (measured)
+- slices=**1627085** (d+89) holdout=**524907** (d+25) rt=1 rss_ok
+- mx9 LR 0.005→0.0048 only — no beat
 
-```bash
-nix-shell -p clang llvm gnumake upx --run './bench/build.sh'
-# official PGO+UPX+embed:
-nix-shell -p clang llvm gnumake upx --run './bench/build.sh --official'
-```
-
-Do not rely on `CC` from the environment (nix sets `CC=gcc`). `bench/build.sh`
-forces `clang++` and `COREI7=1` (AVX2) because Nix strips `-march=native`.
-
-## Bench
-
-- Slices: `bench/slices/` (never change). Holdout: `bench/holdout/`.
-- `./bench/run.sh` then `./bench/run.sh --holdout`.
-- Transformer path needs vocab size **205**; raw 1MB slices with `--transformer`
-  may fail — verify on first run and document workaround if needed.
-
-## Next steps
-
-1. Build unmodified code; run slices + holdout; record baseline in
-   `bench/results.csv` / `LOG.md` (never alter baseline numbers later).
-2. Write `bench/ANALYSIS.md` from architecture notes; pick first small
-   experiment (mixer LR or SSE retune).
-3. One idea per branch; accept only if slices + holdout improve and
-   round-trip is perfect.
+## Now (DRIVER resumed — ignore stale STOPPED freeze)
+- EXP10: drop `AddDoubleIndirect()` on `exp/indirect-drop-10`
+- Campaign never-exit; parent_10h soft-restarts
+- Accept iff both totals < 1626996 / 524882, RT OK, RSS ≤110%
